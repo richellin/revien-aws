@@ -1,14 +1,14 @@
-#revien-aws
-This is a project to repeat daily Naver English conversation.
+# revien-aws
+This is a project to repeat [Naver Daily English Conversation](http://m.wordbook.naver.com/conversation#/endic/20170105).
 
-##Requirement
+## Requirement
 + NodeJS
 + aws-cli
 + python
 + brew
 + etc..
 
-##Preparation
+### Preparation
 ```
 # MAC
 brew install python
@@ -27,7 +27,7 @@ Default output format [None]: text
 ls -la ~/.aws
 ```
 
-##Use
+### Use
 ```
 git clone git@github.com:richellin/revien-aws.git
 cd revien-aws
@@ -47,7 +47,12 @@ npm install
 
 ```
 
-##Note
+### Note
 ```
 You need lambda Environment variables `TABLE_NAME`
+```
+
+### Licence
+```
+MIT
 ```
