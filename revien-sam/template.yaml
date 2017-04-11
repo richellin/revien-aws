@@ -5,9 +5,10 @@ Resources:
   GetFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.get
+      Handler: revien-lambda-get/index.get
       Runtime: nodejs4.3
       Policies: AmazonDynamoDBReadOnlyAccess
+      Description: revien-lambda-get
       Environment:
         Variables:
           TABLE_NAME: !Ref Table
@@ -21,9 +22,12 @@ Resources:
   PutFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.put
+      Handler: revien-lambda-put/index.put
       Runtime: nodejs4.3
       Policies: AmazonDynamoDBFullAccess
+      Description: revien-lambda-put
+      MemorySize: 1024
+      Timeout: 300
       Environment:
         Variables:
           TABLE_NAME: !Ref Table
@@ -37,9 +41,10 @@ Resources:
   DeleteFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.delete
+      Handler: revien-lambda-del/index.delete
       Runtime: nodejs4.3
       Policies: AmazonDynamoDBFullAccess
+      Description: revien-lambda-del
       Environment:
         Variables:
           TABLE_NAME: !Ref Table

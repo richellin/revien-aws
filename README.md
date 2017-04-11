@@ -3,6 +3,8 @@ This is a project to repeat [Naver Daily English Conversation](http://m.wordbook
 
 ## Requirement
 + NodeJS
++ npm
++ phantomjs
 + aws-cli
 + python
 + brew
@@ -29,27 +31,44 @@ ls -la ~/.aws
 
 ### Use
 ```
+# Download source code
 git clone git@github.com:richellin/revien-aws.git
 cd revien-aws
-
-cd revien-sam
-# create your s3 bucket
-aws s3 mb s3://<bucket-name> --region <region>
-
-//todo
-
 
 #module install
 cd revien-lambda-put
 npm install
+cd ..
 
-//todo
+# Start SAM
+cd revien-sam
 
-```
+# create your s3 bucket
+# aws s3 mb s3://<bucket-name> --region <region>
+aws s3 mb s3://revien-sam --region ap-northeast-1
 
-### Note
-```
-You need lambda Environment variables `TABLE_NAME`
+# check your s3 bucket
+aws s3 ls
+
+# setup sam
+# package : upload file to s3 and output template file
+aws cloudformation package \
+   --template-file template.yaml \
+   --output-template-file serverless-output.yaml \
+   --s3-bucket revien-sam
+
+# deploy and set stack name (ex:revien-sam-stack)
+aws cloudformation deploy \
+   --template-file serverless-output.yaml \
+   --stack-name revien-sam-stack \
+   --capabilities CAPABILITY_IAM
+
+# Check your AWS services
+Cloud Formation
+Lambda
+API Gateway
+DynamoDB
+etc..
 ```
 
 ### Licence
